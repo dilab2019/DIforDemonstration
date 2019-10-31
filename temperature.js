@@ -1,45 +1,28 @@
 let users = new Array();
 let time;
 let hour, min, sec;
-let userNum
 let h, m, s ;
 let map, postechMap, transparentMap;
 
 let maxLati=37.5629, minLati=37.5531;
 let maxLongi=127.0541, minLongi=127.0318;
-let default_url = 'https://dilab2019.github.io/DIforDemonstration-GPSbasedHeatmap/';
+
 function preload() {
-  map = loadImage(default_url+'map702.png');
+  img = loadImage('map702.png');
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  fill(255,0,0);
-  ellipse(0,0,500,500);
   hour=12, min=30, sec=0;
   h="", m="", s="";
-
-  userNum=4;
-  users = new UserData[userNum];
-  var userFileName,i;
-  for (i=0; i<userNum; i++)
-  {
-    userFileName = default_url+'data/user'+i+'.txt';
-    println(userFileName);
-    users[i] = new userData(userFileName);
-    //users[i].check();
-    userColor[i] = int(random(255));
-  }
-
+  // users = new UserData[10];
   print(map);
-  image(map, 0, 0,windowWidth, windowHeight);
+  image(map, 0, 0);
 }
 
 function draw() {
-  fill(255,0,0);
-  ellipse(0,0,500,500);
-  translate(windowWidth/2, windowHeight/2);
-
+  print(map);
+  translate(width/2, height/2);
 
   smooth();
 
@@ -91,8 +74,6 @@ function draw() {
 
   imageMode(CENTER);
   image(map, 0, 0, windowWidth, windowHeight);
-
-
 }
 
 
