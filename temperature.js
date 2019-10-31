@@ -83,7 +83,10 @@ class UserData {
     var data_length = 7
     this.fileName = fileName;
     this.rawData = loadStrings(fileName);
-    this.fileLength = rawData.length;
+    if(this.rawData.length==0) print("its zero\n");
+    else print("its not zero\n");
+
+    this.fileLength = this.rawData.length;
     this.data =new String[this.fileLength/data_length-1][data_length-1];
     var i, recover=0, missNum;
     this.pieces2, this.pieces3, this.pieces4, this.pieces5 , this.pieces6 , this.pieces7;

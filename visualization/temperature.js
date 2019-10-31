@@ -1,4 +1,5 @@
-let users = new Array();
+let users;
+
 let time;
 let hour, min, sec;
 let userNum
@@ -8,8 +9,25 @@ let map, postechMap, transparentMap;
 let maxLati=37.5629, minLati=37.5531;
 let maxLongi=127.0541, minLongi=127.0318;
 let default_url = 'https://dilab2019.github.io/DIforDemonstration-GPSbasedHeatmap/';
+
+
+function createArray(length) {
+  if (arguments.length > 1) {
+      var args = Array.prototype.slice.call(arguments, 1);
+      while(i--) arr[length-1 - i] = createArray.apply(this, args);
+  }
+  else{
+    var arr = new Array(length || 0),
+        i = length;
+  }
+  return arr;
+}
+
+
+
+
 function preload() {
-  map = loadImage(default_url+'map702.png');
+  map = loadImage(default_url+'data/map702.png');
 }
 
 function setup() {
@@ -20,15 +38,15 @@ function setup() {
   h="", m="", s="";
 
   userNum=4;
-  users = new UserData[userNum];
+  users = new Array(userNum);
   var userFileName,i;
   for (i=0; i<userNum; i++)
   {
     userFileName = default_url+'data/user'+i+'.txt';
-    println(userFileName);
-    users[i] = new userData(userFileName);
+    // println(userFileName);
+    users[i] = new UserData(userFileName);
     //users[i].check();
-    userColor[i] = int(random(255));
+    // userColor[i] = int(random(255));
   }
 
   print(map);
@@ -36,6 +54,10 @@ function setup() {
 }
 
 function draw() {
+  var i,j;
+  for(i=0;i<userNum;i++){
+    print("users"+i+"  :"+users[i].getLength+"\n");
+  }
   fill(255,0,0);
   ellipse(0,0,500,500);
   translate(windowWidth/2, windowHeight/2);
@@ -61,9 +83,7 @@ function draw() {
 
 
   time = year+"-"+_month+"-"+_day+" "+h+":"+m+":"+s;
-  print("HELLO\n\n");
   // print(time);
-  print("\nHELLO\n\n");
 
   sec++;
 
@@ -99,13 +119,14 @@ function draw() {
 
 class UserData {
   constructor(fileName) {
+
     var data_length = 7
     this.fileName = fileName;
-    this.rawData = loadStrings(fileName);
+    var rawData = loadStrings(fileName);
     this.fileLength = rawData.length;
-    this.data =new String[this.fileLength/data_length-1][data_length-1];
+    this.data = createArray(this.fileLength/data_length-1, data_length-1);
     var i, recover=0, missNum;
-    this.pieces2, this.pieces3, this.pieces4, this.pieces5 , this.pieces6 , this.pieces7;
+    var pieces2, pieces3, pieces4, pieces5 , pieces6 , pieces7;
 
     // for(int i=0 ; i<this.rawData.length ; i++) println(rawData[i]);
 
