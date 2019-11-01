@@ -15,9 +15,12 @@ let default_url = 'https://dilab2019.github.io/DIforDemonstration-GPSbasedHeatma
 let max_temp = 40;
 let min_temp = 0;
 
+//let move_x=50 move_y=100;
+
 var rawData0, rawData1, rawData2, rawData3;
 function preload() {
   map = loadImage(default_url+'data/map702.png');
+//  keymap = rect(0,0,40,200);
   rawData0 = loadStrings(default_url+'data/user'+0+'.txt');
   rawData1 = loadStrings(default_url+'data/user'+1+'.txt');
   rawData2 = loadStrings(default_url+'data/user'+2+'.txt');
@@ -47,8 +50,9 @@ function setup() {
   for (i=0; i<saved_information.length; i++)
     saved_information[i]=new Array(5);
 
-  print(map);
-  image(map, 0, 0,windowWidth, windowHeight);
+//  print(map);
+//  image(map, 0, 0,windowWidth, windowHeight);
+  //draw keymap
 }
 
 
@@ -62,7 +66,7 @@ function mapping(n, start1, stop1, start2, stop2) {
 
 
 function draw() {
-  background(0);
+  //background(0);
   translate(windowWidth/2, windowHeight/2);
 
   smooth();
@@ -136,6 +140,7 @@ function draw() {
      print("hello       "+saved_information[k][4]);
      fill(saved_information[k][4],255,255,50);
      ellipse(saved_information[k][0],saved_information[k][1],40,40);
+
    }
 
 
@@ -167,9 +172,28 @@ function draw() {
   imageMode(CENTER);
   image(map, 0, 0, windowWidth, windowHeight);
   fill(255);
-  text(time, windowWidth/2-350, windowHeight/2-25, 10);
+  textSize(25);
+  text(time, windowWidth/2-350, windowHeight/2-70, 10);
   print(time);
 
+  text("Temperature Guide", -windowWidth/2+55, 180);
+  text("0°C ", -windowWidth/2+220, 128);
+  text("40°C ", -windowWidth/2+220, -110);
+  //text("0°C ", 220-width/2+move_x, 550-height/2+move_y, 10);
+  //strokeWeight(8);
+  //strokeCap(SQUARE);
+  colorMode(HSB);
+    for(var i=0;i<255;i++){
+      stroke(i,255,255,0.5);
+      line(-windowWidth/2+100,-127+i,-windowWidth/2+200,-127+i);
+    }
+
+
+//  colorMode(HSB);
+//  for (var i=0; i<400; i++) {
+//    stroke(i/2, 255, 255, 150);
+//    line(100-width/2+move_x, 150+i-height/2+move_y, 200-width/2+move_x, 150+i-height/2+move_y);
+//  }
 
   if(time.includes("2019-08-20 00"))
     noLoop();
