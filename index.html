@@ -6,11 +6,7 @@
   <title>DigitalTwin - html</title>
   <meta charset="utf-8">
   <style> body{padding:0; margin:0;} </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="p5.js">
-  </script>
-  <script src="p5.sound.js"></script>
-  <script src="visualization/temperature.js"></script>
+
   <style>
 
     a {
@@ -24,20 +20,22 @@
 
     }
     h4{
-      border:5px solid gray;
-      padding:20px;
+      border:3px solid gray;
+      margin:0px;
+      margin-left: 210px;
+      padding:10px;
       /*margin:20px;*/
       display:block;
       width:100px;
       text-align: center;
     }
-    video {
-          position:absolute;
-          top:90px;
-          left:250px;
+    ol {
           margin:0px;
           }
-
+    #grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   </style>
 
 
@@ -61,8 +59,25 @@
       </div>
       </p>
     </div> -->
-
-
+  <p>
+    <div id="grid">
+        <ol>
+          <h4><a href="Temperature.html">Temperature</a></h4>
+          </ol>
+          <ol>
+          <h4><a href="Humidity.html">Humidity</a></h4>
+        </ol>
+        <ol>
+          <h4><a href="FineDust.html">FineDust</a></h4>
+        </ol>
+      </div>
+  <p>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="p5.js">
+      </script>
+      <script src="p5.sound.js"></script>
+      <script src="visualization/temperature.js"></script>
+    </p>
 </body>
 
 </html>
