@@ -75,6 +75,8 @@ function mapping(n, start1, stop1, start2, stop2) {
 
 
 function draw() {
+  resizeCanvas(windowWidth, windowHeight);
+
   //background(0);
   translate(windowWidth/2, windowHeight/2);
 

@@ -6,74 +6,29 @@
   <title>DigitalTwin - html</title>
   <meta charset="utf-8">
   <style> body{padding:0; margin:0;} </style>
-
-  <style>
-
-    a {
-      color:black;
-      text-decoration: none;
-    }
-
-    h1 {
-      font-size: 45px;
-      text-align: center;
-
-    }
-    h4{
-      border:3px solid gray;
-      margin:10px;
-      margin-left: 210px;
-      padding:10px;
-      /*margin:20px;*/
-      display:block;
-      width:100px;
-      text-align: center;
-    }
-    ol {
-          margin:0px;
-          }
-    #grid{
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-  </style>
-
-
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/button.css">
 </head>
 
 <body>
 
 
   <h1><a href="index.html">Digital Twin</a></h1>
-  <!-- <p>
-    <div class="item active">
-    <ol>
-      <h4><ui><a href="Temperature.html">Temperature</a></li></h4><br>
-      <h4><ui><a href="Humidity.html">Humidity</a></li></h4><br>
-      <h4><ui><a href="FineDust.html">FineDust</a></li></h4>
-    </ol>
-      <div>
-         <video width="960" height="600" controls autoplay loop muted>
-         <source src="source\\DTHeatmap.mp4" type="video/mp4">
-         </video>
-      </div>
-      </p>
-    </div> -->
-  <p>
+    <p>
     <div id="grid">
-        <ol>
-          <h4><a href="Temperature.html">Temperature</a></h4>
-          </ol>
-          <ol>
-          <h4><a href="Humidity.html">Humidity</a></h4>
-        </ol>
-        <ol>
-          <h4><a href="FineDust.html">FineDust</a></h4>
-        </ol>
-        <ol>
-        <h4><a href="Temperature Timelapse.html">Temperature Timelapse</a></h4>
-        </ol>
-      </div>
+      <ol>
+        <button type="button" onclick="location.href='Temperature.html' ">Temperature</button>
+      </ol>
+      <ol>
+        <button type="button" onclick="location.href='Humidity.html' ">Humidity</button>
+      </ol>
+      <ol>
+        <button type="button" onclick="location.href='FineDust.html' ">FineDust</button>
+      </ol>
+      <ol>
+        <button type="button" onclick="location.href='Temperature Timelapse.html' ">Temperature Timelapse</button>
+      </ol>
+    </div>
   <p>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src="p5.js">

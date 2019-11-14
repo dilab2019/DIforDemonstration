@@ -11,7 +11,7 @@ h1 {
 h4{
   border:3px solid gray;
   margin:10px;
-  margin-left: 120px;
+  margin-left: 1px;
   padding:10px;
   /* margin:20px; */
   display:block;
@@ -24,4 +24,8 @@ ol {
 #grid{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+  grid-template-rows: 1fr 1fr ;
+  justify-items: center;
+
 }
