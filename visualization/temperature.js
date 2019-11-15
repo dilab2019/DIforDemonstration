@@ -19,7 +19,7 @@ let min_temp = 0;
 
 var rawData0, rawData1, rawData2, rawData3;
 function preload() {
-  map = loadImage(default_url+'data/map702.png');
+  map = loadImage(default_url+'data/pohang.png');
 //  keymap = rect(0,0,40,200);
   rawData0 = loadStrings(default_url+'data/user'+0+'.txt');
   rawData1 = loadStrings(default_url+'data/user'+1+'.txt');

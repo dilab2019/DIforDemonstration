@@ -2,7 +2,7 @@
 
 /* GENERAL BUTTON STYLING */
 button{
-  background:#1AAB8A;
+  background:#08088A;
   color:#fff;
   border:none;
   position:relative;
@@ -15,7 +15,7 @@ button{
 }
 button:hover{
   background:#fff;
-  color:#1AAB8A;
+  color:#819FF7;
 }
 button:before,button:after{
   content:'';
@@ -24,7 +24,7 @@ button:before,button:after{
   right:0;
   height:2px;
   width:0;
-  background: #1AAB8A;
+  background: #08088A;
   transition:400ms ease all;
 }
 button:after{
