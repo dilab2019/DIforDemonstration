@@ -110,6 +110,12 @@ function draw() {
 
     let newLatitude = mapping(tempLati, maxLati, minLati, 0, windowHeight);
     let newLongitude = mapping(tempLong, minLongi, maxLongi, 0, windowWidth);
+    // if(newLongitude<windowWidth/4)
+    //   newLongitude+=windowWidth/2;
+    // if(newLongitude>windowWidth/4 && newLongitude<windowWidth/8*3 && newLatitude>windowHeight/2){
+    //   newLongitude+=windowWidth/8;
+    //   newLatitude-=windowHeight/2;
+    // }
     print("newLatitude "+newLatitude+"    "+"newLongitude "+newLongitude+"\n\n");
 
     let temperature = mapping(trim(users.data[gloval_index][5]), min_temp, max_temp, 0, 255);
@@ -126,9 +132,21 @@ function draw() {
 
   noStroke();
   colorMode(HSB);
-  for(let i=0;i<max_draw_number;i++){
-    fill(drawing[i][2],255,255,200);
-    ellipse(drawing[i][0]-windowWidth/2,drawing[i][1]-windowHeight/2,20,20);
+  let loop=0;
+  for(let i=drawing_index%max_draw_number; loop<max_draw_number && drawing[i][2]!=undefined ;i--){
+    if(i==0) i=max_draw_number-1;
+
+    fill(drawing[i][2],255,255,1-loop*0.01);
+    // if(drawing[i][0]-windowWidth/2 < windowWidth/4){
+    //   ellipse(drawing[i][0],drawing[i][1]-windowHeight/2,20,20);
+    // }
+    // else{
+      ellipse(drawing[i][0]-windowWidth/4,drawing[i][1]-windowHeight/2,20,20);
+    //   print("HELLO\n");
+    // }
+
+    loop++;
+    if(loop==max_draw_number) break;
   }
   time_increasement();
   temperature_legend();
@@ -187,6 +205,7 @@ class UserData {
         pieces4 = split(rawData[data_length*i+(recover%data_length)+4], " : ");
         pieces5 = split(rawData[data_length*i+(recover%data_length)+5], " : ");
         pieces6 = split(rawData[data_length*i+(recover%data_length)+6], " : ");
+
 
 
         this.data[i][0] = pieces1[0];//data
