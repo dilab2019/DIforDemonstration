@@ -178,7 +178,11 @@ class UserData {
         this.data[i][4] = pieces5[1];//longitude
         this.data[i][5] = pieces6[1];//temperature
 
-
+        for (var l = 0; l < 6; i++) {
+          print(this.data[i][l]+"\n");
+        }
+        print("\n");
+        print("\n");
       } else
       {
         if (!rawData[data_length*i+(recover%data_length)+2].includes("dust")) recover--;
