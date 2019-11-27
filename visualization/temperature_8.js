@@ -1,10 +1,10 @@
 let users;
 
 let time;
-let hour, min, sec;
+let hour=9, min=0, sec=0;
 let s_hour, s_min, s_sec;
 let year=2019, month=8, day=1;
-let s_year, s_month, s_day;
+let s_year="2019", s_month, s_day;
 
 let map;
 
@@ -24,12 +24,14 @@ function preload() {
 }
 
 
-
-
-
+let drawing = [];
+let max_draw_number=100;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   users = new UserData(rawData);
+
+  for(let i=0;i<max_draw_number;i++) drawing[i]=[];
+
 }
 
 
@@ -39,20 +41,23 @@ function mapping(n, start1, stop1, start2, stop2) {
 };
 
 function time_setting(){
-  if (sec<10) s="0"+sec;
+  if (sec<10) s_sec="0"+sec;
   else s_sec=""+sec;
 
-  if (min<10) m="0"+min;
+  if (min<10) s_min="0"+min;
   else s_min=""+min;
 
-  if (hour<10) h="0"+hour;
+  if (hour<10) s_hour="0"+hour;
   else s_hour=""+hour;
 
-  if (month<10) _month="0"+month;
+  if (month<10) s_month="0"+month;
   else s_month=""+month;
 
-  if (day<10) _day="0"+day;
+  if (day<10) s_day="0"+day;
   else s_day=""+day;
+
+  // time = s_year+"-"+s_month+"-"+s_day+" "+s_hour+":"+s_min+":"+s_sec;
+  // print(time+"\n");
 }
 
 function time_increasement(){
@@ -76,41 +81,58 @@ function time_increasement(){
 
 
 //gloval index is gonna prove every contents in #_user.txt file
-var gloval_index=0;
+let gloval_index=0;
+let drawing_index=0;
 function draw() {
   resizeCanvas(windowWidth, windowHeight);
-  //background(0);
+
+
   translate(windowWidth/2, windowHeight/2);
+  imageMode(CENTER);
+  tint(255,128);
+  image(map, 0, 0, windowWidth, windowHeight);
 
   smooth();
 
   time_setting();
 
   time = s_year+"-"+s_month+"-"+s_day+" "+s_hour+":"+s_min+":"+s_sec;
+  // print(time+"\n");
+  print(users.data[gloval_index][0]+"\t"+time+"\n");
 
   for(;users.data[gloval_index][0]!="" && String(users.data[gloval_index][0]).includes(time);gloval_index++)
   {
-    let tempLati = trim(users[gloval_index].data[l][3]);
+
+    let tempLati = trim(users.data[gloval_index][3]);
     print("tempLati "+tempLati+"\n");
-    let tempLong = trim(users[gloval_index].data[l][4]);
+    let tempLong = trim(users.data[gloval_index][4]);
     print("tempLong "+tempLong+"\n");
 
     let newLatitude = mapping(tempLati, maxLati, minLati, 0, windowHeight);
     let newLongitude = mapping(tempLong, minLongi, maxLongi, 0, windowWidth);
     print("newLatitude "+newLatitude+"    "+"newLongitude "+newLongitude+"\n\n");
 
-    let temperature = mapping(trim(users[i].data[gloval_index][5]), min_temp, max_temp, 0, 255);
+    let temperature = mapping(trim(users.data[gloval_index][5]), min_temp, max_temp, 0, 255);
 
-    noStroke();
-    colorMode(HSB);
-    fill(temperature,255,255,50);
-    ellipse(newLatitude,newLongitude,40,40);
+
+    print(newLatitude+"   "+newLongitude+"\n");
+
+
+    drawing_index++;
+    drawing[drawing_index%max_draw_number][0]=newLongitude;
+    drawing[drawing_index%max_draw_number][1]=newLatitude;
+    drawing[drawing_index%max_draw_number][2]=temperature;
   }
 
+  noStroke();
+  colorMode(HSB);
+  for(let i=0;i<max_draw_number;i++){
+    fill(drawing[i][2],255,255,200);
+    ellipse(drawing[i][0]-windowWidth/2,drawing[i][1]-windowHeight/2,20,20);
+  }
   time_increasement();
   temperature_legend();
-  imageMode(CENTER);
-  image(map, 0, 0, windowWidth, windowHeight);
+
 
 
 
@@ -119,12 +141,10 @@ function draw() {
 
 
 function temperature_legend(){
-  colorMode(RGB);
-
   fill(255);
   textSize(25);
   text(time, windowWidth/2-350, windowHeight/2-70, 10);
-  print(time);
+
 
   text("Temperature Guide", -windowWidth/2+55, 180);
   text("0°C ", -windowWidth/2+220, 128);
@@ -155,7 +175,7 @@ class UserData {
     var i, recover=0, missNum;
     var  pieces1=[], pieces2=[], pieces3=[], pieces4=[], pieces5=[] , pieces6=[];
 
-    for(i=0 ; i<rawData.length ; i++) print(rawData[i]);
+    // for(i=0 ; i<rawData.length ; i++) print(rawData[i]);
 
     for (i = 0; i < parseInt(rawData.length/data_length); i++) {
       missNum=0;
