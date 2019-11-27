@@ -109,7 +109,8 @@ function draw() {
 
   time_increasement();
   temperature_legend();
-
+  imageMode(CENTER);
+  image(map, 0, 0, windowWidth, windowHeight);
 
 
 
@@ -119,8 +120,7 @@ function draw() {
 
 function temperature_legend(){
   colorMode(RGB);
-  imageMode(CENTER);
-  image(map, 0, 0, windowWidth, windowHeight);
+
   fill(255);
   textSize(25);
   text(time, windowWidth/2-350, windowHeight/2-70, 10);
@@ -151,9 +151,7 @@ class UserData {
     this.data = [];
     for(var l=0;l<this.fileLength/data_length;l++) this.data[l]=[];
     // this.data = new Array(parseInt(this.fileLength/data_length));
-    //  make second entry
-    // for (i=0; i<this.data.length; i++)
-    //   this.data[i]=new Array(data_length);
+
     var i, recover=0, missNum;
     var  pieces1=[], pieces2=[], pieces3=[], pieces4=[], pieces5=[] , pieces6=[];
 
@@ -178,11 +176,11 @@ class UserData {
         this.data[i][4] = pieces5[1];//longitude
         this.data[i][5] = pieces6[1];//temperature
 
-        for (var l = 0; l < 6; i++) {
-          print(this.data[i][l]+"\n");
-        }
-        print("\n");
-        print("\n");
+        // for (var l = 0; l < 6; i++) {
+        //   print(this.data[i][l]+"\n");
+        // }
+        // print("\n");
+        // print("\n");
       } else
       {
         if (!rawData[data_length*i+(recover%data_length)+2].includes("dust")) recover--;
