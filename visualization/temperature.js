@@ -50,9 +50,6 @@ function setup() {
   for (i=0; i<saved_information.length; i++)
     saved_information[i]=new Array(5);
 
-//  print(map);
-//  image(map, 0, 0,windowWidth, windowHeight);
-  //draw keymap
 }
 
 
