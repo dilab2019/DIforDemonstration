@@ -18,14 +18,29 @@ h4{
   width:100px;
   text-align: center;
 }
+
+
 ol {
       margin:0px;
       }
 #grid{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr ;
   grid-gap: 15px;
   grid-template-rows: 1fr 1fr ;
   justify-items: center;
 
+}
+#grid2{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
+  grid-template-rows: 1fr 1fr ;
+  justify-items: center;
+
+}
+
+img {
+height: auto;
+width:100%;
 }
