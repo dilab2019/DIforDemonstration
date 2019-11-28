@@ -1,21 +1,21 @@
-let users;
+var users;
 
-let time;
-let hour=9, min=0, sec=0;
-let s_hour, s_min, s_sec;
-let year=2019, month=8, day=1;
-let s_year="2019", s_month, s_day;
+var time;
+var hour=9, min=0, sec=0;
+var s_hour, s_min, s_sec;
+var year=2019, month=8, day=1;
+var s_year="2019", s_month, s_day;
 
-let map;
+var map;
 
-let maxLati=36.0304, minLati=36.0045;
-let minLongi=129.3012, maxLongi=129.3527;
-let default_url = 'https://dilab2019.github.io/DIforDemonstration-GPSbasedHeatmap/';
+var maxLati=36.0304, minLati=36.0045;
+var minLongi=129.3012, maxLongi=129.3527;
+var default_url = 'https://dilab2019.github.io/DIforDemonstration-GPSbasedHeatmap/';
 
 
 
-let max_temp = 40;
-let min_temp = 0;
+var max_temp = 40;
+var min_temp = 0;
 
 var rawData;
 function preload() {
@@ -24,13 +24,13 @@ function preload() {
 }
 
 
-let drawing = [];
-let max_draw_number=200;
+var drawing = [];
+var max_draw_number=200;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   users = new UserData(rawData);
 
-  for(let i=0;i<max_draw_number;i++) drawing[i]=[];
+  for(var i=0;i<max_draw_number;i++) drawing[i]=[];
 
 }
 
@@ -81,8 +81,8 @@ function time_increasement(){
 
 
 //gloval index is gonna prove every contents in #_user.txt file
-let gloval_index=0;
-let drawing_index=0;
+var gloval_index=0;
+var drawing_index=0;
 function draw() {
   resizeCanvas(windowWidth, windowHeight);
 
@@ -103,13 +103,13 @@ function draw() {
   for(;users.data[gloval_index][0]!="" && String(users.data[gloval_index][0]).includes(time);gloval_index++)
   {
 
-    let tempLati = trim(users.data[gloval_index][3]);
+    var tempLati = trim(users.data[gloval_index][3]);
     print("tempLati "+tempLati+"\n");
-    let tempLong = trim(users.data[gloval_index][4]);
+    var tempLong = trim(users.data[gloval_index][4]);
     print("tempLong "+tempLong+"\n");
 
-    let newLatitude = mapping(tempLati, maxLati, minLati, 0, windowHeight);
-    let newLongitude = mapping(tempLong, minLongi, maxLongi, 0, windowWidth);
+    var newLatitude = mapping(tempLati, maxLati, minLati, 0, windowHeight);
+    var newLongitude = mapping(tempLong, minLongi, maxLongi, 0, windowWidth);
     // if(newLongitude<windowWidth/4)
     //   newLongitude+=windowWidth/2;
     // if(newLongitude>windowWidth/4 && newLongitude<windowWidth/8*3 && newLatitude>windowHeight/2){
@@ -118,7 +118,7 @@ function draw() {
     // }
     print("newLatitude "+newLatitude+"    "+"newLongitude "+newLongitude+"\n\n");
 
-    let temperature = mapping(trim(users.data[gloval_index][5]), min_temp, max_temp, 0, 255);
+    var temperature = mapping(trim(users.data[gloval_index][5]), min_temp, max_temp, 0, 255);
 
 
     print(newLatitude+"   "+newLongitude+"\n");
@@ -132,8 +132,8 @@ function draw() {
 
   noStroke();
   colorMode(HSB);
-  let loop=0;
-  for(let i=drawing_index%max_draw_number; loop<max_draw_number && drawing[i][2]!=undefined ;i--){
+  var loop=0;
+  for(var i=drawing_index%max_draw_number; loop<max_draw_number && drawing[i][2]!=undefined ;i--){
     if(i==0) i=max_draw_number-1;
 
     fill(drawing[i][2],255,255,1-loop*0.005);
