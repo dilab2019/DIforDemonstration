@@ -3,7 +3,7 @@ let users;
 let time;
 let hour=9, min=0, sec=0;
 let s_hour, s_min, s_sec;
-let year=2019, month=8, day=1;
+let year=2019, month=9, day=1;
 let s_year="2019", s_month, s_day;
 
 let map;
@@ -14,13 +14,13 @@ let default_url = 'https://dilab2019.github.io/DIforDemonstration-GPSbasedHeatma
 
 
 
-let max_temp = 40;
-let min_temp = 0;
+let max_dust = 200;
+let min_dust = 0;
 
 var rawData;
 function preload() {
   map = loadImage(default_url+'data/pohang.png');
-  rawData = loadStrings(default_url+'data/8_user.txt');
+  rawData = loadStrings(default_url+'data/9_user.txt');
 }
 
 
@@ -118,7 +118,7 @@ function draw() {
     // }
     print("newLatitude "+newLatitude+"    "+"newLongitude "+newLongitude+"\n\n");
 
-    let temperature = mapping(trim(users.data[gloval_index][5]), min_temp, max_temp, 0, 255);
+    let dust = mapping(trim(users.data[gloval_index][2]), min_dust, max_dust, 0, 255);
 
 
     print(newLatitude+"   "+newLongitude+"\n");
@@ -127,7 +127,7 @@ function draw() {
     drawing_index++;
     drawing[drawing_index%max_draw_number][0]=newLongitude;
     drawing[drawing_index%max_draw_number][1]=newLatitude;
-    drawing[drawing_index%max_draw_number][2]=temperature;
+    drawing[drawing_index%max_draw_number][2]=dust;
   }
 
   noStroke();
@@ -136,12 +136,12 @@ function draw() {
   for(let i=drawing_index%max_draw_number; loop<max_draw_number && drawing[i][2]!=undefined ;i--){
     if(i==0) i=max_draw_number-1;
 
-    fill(drawing[i][2],255,255,1-loop*0.005);
+    fill(drawing[i][2],150,150,1-loop*0.005);
     // if(drawing[i][0]-windowWidth/2 < windowWidth/4){
     //   ellipse(drawing[i][0],drawing[i][1]-windowHeight/2,20,20);
     // }
     // else{
-      ellipse(drawing[i][0]-windowWidth/4,drawing[i][1]-windowHeight/2,5,5);
+      ellipse(drawing[i][0]-windowWidth/4,drawing[i][1]-windowHeight/2,15+loop*0.1,15+loop*0.1);
     //   print("HELLO\n");
     // }
 
@@ -149,7 +149,7 @@ function draw() {
     if(loop==max_draw_number) break;
   }
   time_increasement();
-  temperature_legend();
+  dust_legend();
 
 
 
@@ -158,19 +158,20 @@ function draw() {
 }
 
 
-function temperature_legend(){
+function dust_legend(){
   fill(255);
   textSize(25);
   text(time, windowWidth/2-350, windowHeight/2-70, 10);
 
 
-  text("Temperature Guide", -windowWidth/2+55, 180);
-  text("0°C ", -windowWidth/2+220, 128);
-  text("40°C ", -windowWidth/2+220, -110);
+  text("Dust Guide", -windowWidth/2+55, 180);
+  text("0 μm/m2", -windowWidth/2+220, 128);
+  text("200 μm/m2 ", -windowWidth/2+220, -110);
 
-  colorMode(HSB);
-  for(var i=0;i<255;i++){
-    stroke(i,255,255,0.5);
+
+  for(var i=0;i<255;i+=10){
+    stroke(i,150,150,0.5);
+    strokeWeight(10);
     line(-windowWidth/2+100,-127+i,-windowWidth/2+200,-127+i);
   }
 }

@@ -141,7 +141,7 @@ function draw() {
     //   ellipse(drawing[i][0],drawing[i][1]-windowHeight/2,20,20);
     // }
     // else{
-      ellipse(drawing[i][0]-windowWidth/4,drawing[i][1]-windowHeight/2,20,20);
+      ellipse(drawing[i][0]-windowWidth/4,drawing[i][1]-windowHeight/2,5,5);
     //   print("HELLO\n");
     // }
 

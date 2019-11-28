@@ -14,8 +14,8 @@ let default_url = 'https://dilab2019.github.io/DIforDemonstration-GPSbasedHeatma
 
 
 
-let max_temp = 40;
-let min_temp = 0;
+let max_dust = 200;
+let min_dust = 0;
 
 var rawData;
 function preload() {
@@ -118,7 +118,7 @@ function draw() {
     // }
     print("newLatitude "+newLatitude+"    "+"newLongitude "+newLongitude+"\n\n");
 
-    let temperature = mapping(trim(users.data[gloval_index][5]), min_temp, max_temp, 0, 255);
+    let dust = mapping(trim(users.data[gloval_index][2]), min_dust, max_dust, 0, 255);
 
 
     print(newLatitude+"   "+newLongitude+"\n");
@@ -127,21 +127,21 @@ function draw() {
     drawing_index++;
     drawing[drawing_index%max_draw_number][0]=newLongitude;
     drawing[drawing_index%max_draw_number][1]=newLatitude;
-    drawing[drawing_index%max_draw_number][2]=temperature;
+    drawing[drawing_index%max_draw_number][2]=dust;
   }
 
   noStroke();
-  colorMode(HSB);
+  colorMode(RGB);
   let loop=0;
   for(let i=drawing_index%max_draw_number; loop<max_draw_number && drawing[i][2]!=undefined ;i--){
     if(i==0) i=max_draw_number-1;
 
-    fill(drawing[i][2],255,255,1-loop*0.005);
+    fill(drawing[i][2],250-drawing[i][2],250-drawing[i][2],200-loop);
     // if(drawing[i][0]-windowWidth/2 < windowWidth/4){
     //   ellipse(drawing[i][0],drawing[i][1]-windowHeight/2,20,20);
     // }
     // else{
-      ellipse(drawing[i][0]-windowWidth/4,drawing[i][1]-windowHeight/2,5,5);
+      ellipse(drawing[i][0]-windowWidth/4,drawing[i][1]-windowHeight/2,3+loop*0.1,3+loop*0.1);
     //   print("HELLO\n");
     // }
 
@@ -149,7 +149,7 @@ function draw() {
     if(loop==max_draw_number) break;
   }
   time_increasement();
-  temperature_legend();
+  dust_legend();
 
 
 
@@ -158,19 +158,20 @@ function draw() {
 }
 
 
-function temperature_legend(){
+function dust_legend(){
   fill(255);
   textSize(25);
   text(time, windowWidth/2-350, windowHeight/2-70, 10);
 
 
-  text("Temperature Guide", -windowWidth/2+55, 180);
-  text("0°C ", -windowWidth/2+220, 128);
-  text("40°C ", -windowWidth/2+220, -110);
+  text("\t\tDust Guide", -windowWidth/2+55, 180);
+  text("0 μm/m2", -windowWidth/2+220, 128);
+  text("200 μm/m2 ", -windowWidth/2+220, -110);
 
-  colorMode(HSB);
-  for(var i=0;i<255;i++){
-    stroke(i,255,255,0.5);
+
+  for(var i=0;i<255;i+=10){
+    stroke(250-i,i,i,128);
+    strokeWeight(3);
     line(-windowWidth/2+100,-127+i,-windowWidth/2+200,-127+i);
   }
 }
