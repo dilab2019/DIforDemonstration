@@ -171,7 +171,7 @@ function dust_legend(){
 
   for(var i=0;i<255;i+=10){
     stroke(250-i,i,i,128);
-    strokeWeight(3);
+    strokeWeight(1);
     line(-windowWidth/2+100,-127+i,-windowWidth/2+200,-127+i);
   }
 }

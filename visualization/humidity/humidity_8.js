@@ -169,8 +169,9 @@ function humidity_legend(){
   text("100%", -windowWidth/2+220, -110);
 
   colorMode(RGB);
-  for(let i=0;i<255;i++){
+  for(let i=0;i<255;i+=10){
     stroke(50,50,255-i,200);
+    strokeWeight(1);
     line(-windowWidth/2+100,-127+i,-windowWidth/2+200,-127+i);
   }
 }
