@@ -118,7 +118,7 @@ function draw() {
     // }
     print("newLatitude "+newLatitude+"    "+"newLongitude "+newLongitude+"\n\n");
 
-    let dust = mapping(trim(users.data[gloval_index][2]), min_dust, max_dust, 0, 255);
+    let dust = mapping(trim(users.data[gloval_index][1]), min_dust, max_dust, 0, 255);
 
 
     print(newLatitude+"   "+newLongitude+"\n");
