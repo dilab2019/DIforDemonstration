@@ -1,36 +1,36 @@
-var users;
+let users;
 
-var time;
-var hour=9, min=0, sec=0;
-var s_hour, s_min, s_sec;
-var year=2019, month=8, day=1;
-var s_year="2019", s_month, s_day;
+let time;
+let hour=9, min=0, sec=0;
+let s_hour, s_min, s_sec;
+let year=2019, month=8, day=1;
+let s_year="2019", s_month, s_day;
 
-var map;
+let map;
 
-var maxLati=36.0304, minLati=36.0045;
-var minLongi=129.3012, maxLongi=129.3527;
-var default_url = 'https://dilab2019.github.io/DIforDemonstration-GPSbasedHeatmap/';
+let maxLati=36.0304, minLati=36.0045;
+let minLongi=129.3012, maxLongi=129.3527;
+let default_url = 'https://dilab2019.github.io/DIforDemonstration-GPSbasedHeatmap/';
 
 
 
-var max_temp = 40;
-var min_temp = 0;
+let max_temp = 40;
+let min_temp = 0;
 
-var rawData;
+let rawData;
 function preload() {
   map = loadImage(default_url+'data/pohang.png');
   rawData = loadStrings(default_url+'data/8_user.txt');
 }
 
 
-var drawing = [];
-var max_draw_number=200;
+let drawing = [];
+let max_draw_number=200;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   users = new UserData(rawData);
 
-  for(var i=0;i<max_draw_number;i++) drawing[i]=[];
+  for(let i=0;i<max_draw_number;i++) drawing[i]=[];
 
 }
 
@@ -81,8 +81,8 @@ function time_increasement(){
 
 
 //gloval index is gonna prove every contents in #_user.txt file
-var gloval_index=0;
-var drawing_index=0;
+let gloval_index=0;
+let drawing_index=0;
 function draw() {
   resizeCanvas(windowWidth, windowHeight);
 
@@ -97,19 +97,19 @@ function draw() {
   time_setting();
 
   time = s_year+"-"+s_month+"-"+s_day+" "+s_hour+":"+s_min+":"+s_sec;
-  // print(time+"\n");
+  console.log(time+"\n");
   print(users.data[gloval_index][0]+"\t"+time+"\n");
 
   for(;users.data[gloval_index][0]!="" && String(users.data[gloval_index][0]).includes(time);gloval_index++)
   {
 
-    var tempLati = trim(users.data[gloval_index][3]);
+    let tempLati = trim(users.data[gloval_index][3]);
     print("tempLati "+tempLati+"\n");
-    var tempLong = trim(users.data[gloval_index][4]);
+    let tempLong = trim(users.data[gloval_index][4]);
     print("tempLong "+tempLong+"\n");
 
-    var newLatitude = mapping(tempLati, maxLati, minLati, 0, windowHeight);
-    var newLongitude = mapping(tempLong, minLongi, maxLongi, 0, windowWidth);
+    let newLatitude = mapping(tempLati, maxLati, minLati, 0, windowHeight);
+    let newLongitude = mapping(tempLong, minLongi, maxLongi, 0, windowWidth);
     // if(newLongitude<windowWidth/4)
     //   newLongitude+=windowWidth/2;
     // if(newLongitude>windowWidth/4 && newLongitude<windowWidth/8*3 && newLatitude>windowHeight/2){
@@ -118,7 +118,7 @@ function draw() {
     // }
     print("newLatitude "+newLatitude+"    "+"newLongitude "+newLongitude+"\n\n");
 
-    var temperature = mapping(trim(users.data[gloval_index][5]), min_temp, max_temp, 0, 255);
+    let temperature = mapping(trim(users.data[gloval_index][5]), min_temp, max_temp, 0, 255);
 
 
     print(newLatitude+"   "+newLongitude+"\n");
@@ -132,8 +132,8 @@ function draw() {
 
   noStroke();
   colorMode(HSB);
-  var loop=0;
-  for(var i=drawing_index%max_draw_number; loop<max_draw_number && drawing[i][2]!=undefined ;i--){
+  let loop=0;
+  for(let i=drawing_index%max_draw_number; loop<max_draw_number && drawing[i][2]!=undefined ;i--){
     if(i==0) i=max_draw_number-1;
 
     fill(drawing[i][2],255,255,1-loop*0.005);
@@ -169,7 +169,7 @@ function temperature_legend(){
   text("40°C ", -windowWidth/2+220, -110);
 
   colorMode(HSB);
-  for(var i=0;i<255;i++){
+  for(let i=0;i<255;i++){
     stroke(i,255,255,0.5);
     line(-windowWidth/2+100,-127+i,-windowWidth/2+200,-127+i);
   }
@@ -182,16 +182,16 @@ class UserData {
     constructor(rawData) {
 
 
-    var data_length = 7
+    let data_length = 7
     this.fileLength = rawData.length; //1+data_number*7+1
 
     //  make two dimensional array
     this.data = [];
-    for(var l=0;l<this.fileLength/data_length;l++) this.data[l]=[];
+    for(let l=0;l<this.fileLength/data_length;l++) this.data[l]=[];
     // this.data = new Array(parseInt(this.fileLength/data_length));
 
-    var i, recover=0, missNum;
-    var  pieces1=[], pieces2=[], pieces3=[], pieces4=[], pieces5=[] , pieces6=[];
+    let i, recover=0, missNum;
+    let  pieces1=[], pieces2=[], pieces3=[], pieces4=[], pieces5=[] , pieces6=[];
 
     // for(i=0 ; i<rawData.length ; i++) print(rawData[i]);
 
@@ -215,7 +215,7 @@ class UserData {
         this.data[i][4] = pieces5[1];//longitude
         this.data[i][5] = pieces6[1];//temperature
 
-        // for (var l = 0; l < 6; i++) {
+        // for (let l = 0; l < 6; i++) {
         //   print(this.data[i][l]+"\n");
         // }
         // print("\n");
