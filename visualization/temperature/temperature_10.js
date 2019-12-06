@@ -89,7 +89,7 @@ function draw() {
 
   translate(windowWidth/2, windowHeight/2);
   imageMode(CENTER);
-  tint(255,128);
+  tint(50);
   image(map, 0, 0, windowWidth, windowHeight);
 
   smooth();
@@ -170,7 +170,7 @@ function temperature_legend(){
 
   colorMode(HSB);
   for(let i=0;i<255;i+=10){
-    stroke(255-i,255,255,0.5);
+    stroke(i,255,255,0.5);
     strokeWeight(1);
     line(-windowWidth/2+100,-127+i,-windowWidth/2+200,-127+i);
   }

@@ -89,7 +89,7 @@ function draw() {
 
   translate(windowWidth/2, windowHeight/2);
   imageMode(CENTER);
-  tint(255,128);
+  tint(50);
   image(map, 0, 0, windowWidth, windowHeight);
 
   smooth();
