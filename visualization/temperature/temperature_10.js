@@ -170,7 +170,7 @@ function temperature_legend(){
 
   colorMode(HSB);
   for(let i=0;i<255;i+=10){
-    stroke(i,255,255,0.5);
+    stroke(255-i,255,255,0.5);
     strokeWeight(1);
     line(-windowWidth/2+100,-127+i,-windowWidth/2+200,-127+i);
   }

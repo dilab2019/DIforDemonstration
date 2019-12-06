@@ -136,7 +136,7 @@ function draw() {
   for(let i=drawing_index%max_draw_number; loop<max_draw_number && drawing[i][2]!=undefined ;i--){
     if(i==0) i=max_draw_number-1;
 
-    fill(drawing[i][2],255,255,1-loop*0.005);
+    fill(255-drawing[i][2],255,255,1-loop*0.005);
     // if(drawing[i][0]-windowWidth/2 < windowWidth/4){
     //   ellipse(drawing[i][0],drawing[i][1]-windowHeight/2,20,20);
     // }
