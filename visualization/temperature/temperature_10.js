@@ -3,7 +3,7 @@ let users;
 let time;
 let hour=9, min=0, sec=0;
 let s_hour, s_min, s_sec;
-let year=2019, month=9, day=1;
+let year=2019, month=10, day=1;
 let s_year="2019", s_month, s_day;
 
 let map;
@@ -20,7 +20,7 @@ let min_temp = 0;
 let rawData;
 function preload() {
   map = loadImage(default_url+'data/pohang.png');
-  rawData = loadStrings(default_url+'data/9_user.txt');
+  rawData = loadStrings(default_url+'data/10_user.txt');
 }
 
 
