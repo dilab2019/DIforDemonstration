@@ -14,8 +14,8 @@ button{
   outline:none;
 }
 button:hover{
-  background:#fff;
-  color:#819FF7;
+  background:#819FF7;
+  color:#fff;
 }
 button:before,button:after{
   content:'';

@@ -141,7 +141,7 @@ function draw() {
     //   ellipse(drawing[i][0],drawing[i][1]-windowHeight/2,20,20);
     // }
     // else{
-      ellipse(drawing[i][0]-windowWidth/4,drawing[i][1]-windowHeight/2,5,5);
+      ellipse(drawing[i][0]-windowWidth/4,drawing[i][1]-windowHeight/2,10,10);
     //   print("HELLO\n");
     // }
 
@@ -172,7 +172,7 @@ function temperature_legend(){
   for(let i=0;i<255;i+=10){
     stroke(i,255,255,0.5);
     strokeWeight(1);
-    line(-windowWidth/2+100,-127+i,-windowWidth/2+200,-127+i);
+    line(-windowWidth/2+125,-127+i,-windowWidth/2+175,-127+i);
   }
 }
 
