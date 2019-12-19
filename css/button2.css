@@ -1,0 +1,11 @@
+button2{
+  background:#0000;
+  color:#FFA500;
+  border:none;
+  position:relative;
+  height:20px;
+  font-size:1.2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}

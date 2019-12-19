@@ -26,7 +26,7 @@ ol {
 #grid{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr ;
-  grid-gap: 15px;
+  grid-gap: 5px;
   grid-template-rows: 1fr 1fr ;
   justify-items: center;
 
@@ -37,7 +37,6 @@ ol {
   grid-gap: 15px;
   grid-template-rows: 1fr 1fr ;
   justify-items: center;
-
 }
 
 img {
