@@ -92,6 +92,7 @@ function draw() {
   imageMode(CENTER);
   tint(255,128);
   image(map, 0, 0, windowWidth, windowHeight);
+  image(phone, -windowWidth/2+150, windowHeight/2-100,60,125);
 
   smooth();
 

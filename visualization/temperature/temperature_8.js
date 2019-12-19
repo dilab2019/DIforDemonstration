@@ -92,7 +92,7 @@ function draw() {
   imageMode(CENTER);
   tint(50);
   image(map, 0, 0, windowWidth, windowHeight);
-  image(map, 0, windowHeight-200);
+  image(phone, -windowWidth/2+150, windowHeight/2-100,60,125);
   smooth();
 
   time_setting();
