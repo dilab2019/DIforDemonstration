@@ -20,6 +20,7 @@ let min_temp = 0;
 let rawData;
 function preload() {
   map = loadImage(default_url+'data/pohang.png');
+  phone = loadImage(default_url+'data/phone.png');
   rawData = loadStrings(default_url+'data/8_user.txt');
 }
 
