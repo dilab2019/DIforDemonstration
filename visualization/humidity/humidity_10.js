@@ -172,7 +172,7 @@ function humidity_legend(){
 
   colorMode(RGB);
   for(let i=0;i<255;i+=10){
-    stroke(50,50,255-i,200);
+    stroke(50,50,255-i);
     strokeWeight(1);
     line(-windowWidth/2+125,-127+i,-windowWidth/2+175,-127+i);
   }

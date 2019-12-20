@@ -2,7 +2,7 @@
 
 /* GENERAL BUTTON STYLING */
 button{
-  background:#08088A;
+  background:#0000;
   color:#fff;
   border:none;
   position:relative;
@@ -14,7 +14,7 @@ button{
   outline:none;
 }
 button:hover{
-  background:#819FF7;
+  background:#0000;
   color:#fff;
 }
 button:before,button:after{
